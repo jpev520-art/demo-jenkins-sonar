@@ -1,0 +1,22 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube
+    environment:
+      - SONAR_VALIDATEWEBHOOKS=false
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonar_data:/opt/sonarqube/data
+
+volumes:
+  jenkins_home:
+  sonar_data:
